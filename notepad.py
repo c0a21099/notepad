@@ -29,6 +29,7 @@ menu_bar.add_cascade(label = "File", menu = file_menu)
 # Crate commands in the file bar.
 file_menu.add_command(label = "open", command = open_file)
 file_menu.add_command(label = "save", command = save_file)
+file_menu.add_separator() # Separator Line.
 file_menu.add_command(label = "exit", command = root.quit)
 
 # Text edit.

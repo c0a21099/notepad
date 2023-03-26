@@ -60,8 +60,7 @@ def on_closing():
 
 root = tk.Tk()
 root.title("Notepad")
-root.protocol("WM_DELETE_WINDOW", on_closing)  # Add event handler for window close button.
-
+root.protocol("WM_DELETE_WINDOW", on_closing)  # ウィンドウの閉じるボタンをクリックしたときに発生させるイベントのこと.
 # Create a menubar.
 menu_bar = tk.Menu(root)
 root.config(menu=menu_bar)

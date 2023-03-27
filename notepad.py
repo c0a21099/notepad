@@ -61,6 +61,11 @@ def on_closing():
             return
     root.destroy()
 
+def resize_text(event):
+    # 常時eventを取得しているから重い模様. -> ウィンドウのサイズを可変にしたときに現象が見られた.
+    # text.place(x=0, y=0, width=event.width, height=event.height)  
+    text.pack(fill="both", expand=True)
+
 root = tk.Tk()
 root.title("Untitled - Notepad")
 root.protocol("WM_DELETE_WINDOW", on_closing)  # Add event handler for window close button.
@@ -86,7 +91,22 @@ root.bind("<Control-o>", lambda event: open_file())
 root.bind("<Control-s>", lambda event: save_file())
 root.bind("<Control-q>", lambda event: on_closing())
 
+'''
 # Text edit.
 text = tk.Text(root)
-text.pack()
+# Add a binding to resize the text box when the window is resized.
+text.bind("<Configure>", resize_text)
+text.place(x=0, y=0, relwidth=1, relheight=1)
+'''
+
+# テキストウィジェットを中央に配置するフレームを作成する
+text_frame = tk.Frame(root)
+text_frame.pack(fill="both", expand=True)
+
+# Textウィジェットをフレームに配置する
+text = tk.Text(text_frame)
+text.pack(fill="both", expand=True)
+
+# テキストウィジェットのサイズを変更するためのバインディングを追加する
+text.bind("<Configure>", resize_text)
 root.mainloop()

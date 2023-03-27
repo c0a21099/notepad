@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import filedialog as tkf
 from tkinter import messagebox as tkmb
 
+import os
+
 def open_file():
     global filename
     if text.edit_modified():
@@ -20,6 +22,7 @@ def open_file():
             text.delete('1.0', tk.END)  # Clear current text.
             text.insert('1.0', f.read())
         print(filename)
+        root.title("{} - Notepad".format(os.path.basename(filename)))  # Display only the filename in the title.
 
 def save_file():
     global filename
@@ -33,7 +36,7 @@ def save_file():
     if filename:
         with open(filename, 'w') as f:
             f.write(text.get("1.0", tk.END))  # Writes input to a text file.
-        root.title("{} - Notepad".format(filename))
+        root.title("{} - Notepad".format(os.path.basename(filename)))  # Display only the filename in the title.
         print(filename)
 
 def new_file():
@@ -46,6 +49,7 @@ def new_file():
             return
     filename = None
     text.delete('1.0', tk.END)
+    root.title("Untitled - Notepad")  # Update the title of the window
     print("New file created.")
 
 def on_closing():

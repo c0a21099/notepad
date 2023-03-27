@@ -64,7 +64,12 @@ def on_closing():
 def resize_text(event):
     # 常時eventを取得しているから重い模様. -> ウィンドウのサイズを可変にしたときに現象が見られた.
     # text.place(x=0, y=0, width=event.width, height=event.height)  
-    text.pack(fill="both", expand=True)
+    
+    # ウィンドウのリサイズ時にも呼び出しを行わないように, 処理を変更
+    if event.widget is text:
+        if text.edit_modified():
+            text.edit_modified(False)
+        text.pack(fill="both", expand=True)
 
 root = tk.Tk()
 root.title("Untitled - Notepad")

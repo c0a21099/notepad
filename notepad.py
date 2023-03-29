@@ -91,7 +91,7 @@ file_menu.add_separator()  # Separator Line.
 file_menu.add_command(label="Exit", command=root.quit, accelerator="Ctrl+Q")
 
 # Add keybindings to commands in the file bar.
-root.bind("<Control-n>", lambda event: new_file())
+root.bind("<Control-n>", lambda event: new_file())  # lambdaで関数を直接渡して, 別の関数を定義して渡す必要をなくしている.
 root.bind("<Control-o>", lambda event: open_file())
 root.bind("<Control-s>", lambda event: save_file())
 root.bind("<Control-q>", lambda event: on_closing())

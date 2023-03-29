@@ -54,7 +54,7 @@ def new_file():
 
 def on_closing():
     if text.edit_modified():  # Check if text has been modified.
-        save = tk.messagebox.askyesnocancel("notepad", "このメモ帳を閉じる前に, 内容を保存しますか?")
+        save = tkf.askyesnocancel("notepad", "このメモ帳を閉じる前に, 内容を保存しますか?")
         if save:
             save_file()
         elif save is None:

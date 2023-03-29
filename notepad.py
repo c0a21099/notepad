@@ -7,7 +7,7 @@ import os
 def open_file():
     global filename
     if text.edit_modified():
-        save = tkmb.askyesnocancel("Save Changes", "Do you want to save changes before opening a new file?")
+        save = tkmb.askyesnocancel("notepad", "新しくファイルを開く前に, 今の内容を保存しますか?")
         if save:
             save_file()
         elif save is None:
@@ -42,7 +42,7 @@ def save_file():
 def new_file():
     global filename
     if text.edit_modified():
-        save = tkmb.askyesnocancel("Save Changes", "Do you want to save changes before creating a new file?")
+        save = tkmb.askyesnocancel("notepad", "新しいファイルを作成する前に, 今の内容を保存しますか?")
         if save:
             save_file()
         elif save is None:
@@ -54,7 +54,7 @@ def new_file():
 
 def on_closing():
     if text.edit_modified():  # Check if text has been modified.
-        save = tk.messagebox.askyesnocancel("Save Changes", "Do you want to save changes before quitting?")
+        save = tk.messagebox.askyesnocancel("notepad", "このメモ帳を閉じる前に, 内容を保存しますか?")
         if save:
             save_file()
         elif save is None:
